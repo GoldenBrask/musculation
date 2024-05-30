@@ -7,6 +7,8 @@ class ExerciceController {
     public function index() {
         $partieCorps = new PartieCorps();
         $parties = $partieCorps->getAll();
+        $exercice = new Exercice();
+        $exercices = $exercice->getAll();
 
         require_once __DIR__ . '/../views/exercices.php';
     }

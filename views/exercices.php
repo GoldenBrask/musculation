@@ -16,6 +16,27 @@ include 'header.php';
             <?php endforeach; ?>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Ajouter</button>
+    <button type="submit" class="btn btn-primary my-2">Ajouter</button>
 </form>
+
+<h2 class="mt-4">Liste des exercices</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Partie du corps</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($exercices as $exercice): ?>
+            <tr>
+                <td><?= $exercice['id'] ?></td>
+                <td><?= $exercice['nomExos'] ?></td>
+                <td><?= $exercice['nomPartieCorps'] ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
 <?php include 'footer.php'; ?>

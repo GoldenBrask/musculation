@@ -29,6 +29,10 @@ if ('/' === $uri) {
     require '../controllers/PerformanceController.php';
     $controller = new PerformanceController();
     $controller->getLastPerformance();
+} elseif ('/performance/filter' === $uri && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require '../controllers/PerformanceController.php';
+    $controller = new PerformanceController();
+    $controller->filter();
 } else {
     header('HTTP/1.1 404 Not Found');
     echo 'Page not found';
