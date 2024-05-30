@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../models/Exercice.php';
 require_once __DIR__ . '/../models/PartieCorps.php';
+require_once __DIR__ . '/../models/Performance.php';
 
 class ExerciceController {
     public function index() {
@@ -20,5 +21,15 @@ class ExerciceController {
             header('Location: /exercices');
         }
     }
+
+    public function show($id) {
+        $exercice = new Exercice();
+        $details = $exercice->getById($id);
+        $performance = new Performance();
+        $performances = $performance->getAllByExerciceId($id);
+    
+        require_once __DIR__ . '/../views/exercice_details.php';
+    }
+    
 }
 ?>

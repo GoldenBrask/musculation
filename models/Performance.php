@@ -14,10 +14,16 @@ class Performance {
     }
 
     public function getLastByExerciceId($exercice_id) {
-    $stmt = $this->pdo->prepare("SELECT * FROM performances WHERE exercice_id = :exercice_id ORDER BY date DESC LIMIT 1");
-    $stmt->execute(['exercice_id' => $exercice_id]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $this->pdo->prepare("SELECT * FROM performances WHERE exercice_id = :exercice_id ORDER BY date DESC LIMIT 1");
+        $stmt->execute(['exercice_id' => $exercice_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function getAllByExerciceId($exercice_id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM performances WHERE exercice_id = :exercice_id ORDER BY date DESC");
+        $stmt->execute(['exercice_id' => $exercice_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 
 
     public function create($date, $exercice_id, $poids, $series, $repetitions) {

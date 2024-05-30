@@ -17,6 +17,10 @@ if ('/' === $uri) {
     require '../controllers/ExerciceController.php';
     $controller = new ExerciceController();
     $controller->create();
+} elseif (preg_match('#^/exercice/(\d+)$#', $uri, $matches)) {
+    require '../controllers/ExerciceController.php';
+    $controller = new ExerciceController();
+    $controller->show($matches[1]);
 } elseif ('/performances' === $uri) {
     require '../controllers/PerformanceController.php';
     $controller = new PerformanceController();

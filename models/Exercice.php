@@ -20,10 +20,11 @@ class Exercice {
 
 
     public function getById($id) {
-        $stmt = $this->pdo->prepare("SELECT * FROM exercices WHERE id = :id");
+        $stmt = $this->pdo->prepare("SELECT exercices.id as id, exercices.nom as nomExos, parties_corps.nom as nomPartieCorps FROM exercices JOIN parties_corps ON exercices.partie_corps_id = parties_corps.id WHERE exercices.id = :id");
         $stmt->execute(['id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
 
     public function getAllPartiesCorps() {
         $stmt = $this->pdo->query("SELECT * FROM parties_corps");

@@ -32,7 +32,7 @@ include 'header.php';
         <?php foreach ($exercices as $exercice): ?>
             <tr>
                 <td><?= $exercice['id'] ?></td>
-                <td><?= $exercice['nomExos'] ?></td>
+                <td><a href="/exercice/<?= $exercice['id'] ?>"><?= $exercice['nomExos'] ?></a></td>
                 <td><?= $exercice['nomPartieCorps'] ?></td>
             </tr>
         <?php endforeach; ?>
