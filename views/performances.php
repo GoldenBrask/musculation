@@ -7,7 +7,7 @@
     </div>
     <div class="form-group">
         <label for="exercice_id">Exercice</label>
-        <select class="form-control" id="exercice_id" name="exercice_id">
+        <select class="form-control" id="exercice_id" name="exercice_id" required>
             <option value="">Sélectionnez un exercice</option>
             <?php foreach ($exercices as $exercice): ?>
                 <option value="<?= $exercice['id'] ?>"><?= $exercice['nomExos'] ?></option>
@@ -16,15 +16,15 @@
     </div>
     <div class="form-group">
         <label for="poids">Poids</label>
-        <input type="number" class="form-control" id="poids" name="poids" required>
+        <input type="number" class="form-control" id="poids" min="1" name="poids" required>
     </div>
     <div class="form-group">
         <label for="series">Séries</label>
-        <input type="number" class="form-control" id="series" name="series" required>
+        <input type="number" class="form-control" id="series" name="series" min="1" required>
     </div>
     <div class="form-group">
         <label for="repetitions">Répétitions</label>
-        <input type="number" class="form-control" id="repetitions" name="repetitions" required>
+        <input type="number" class="form-control" id="repetitions" min="1" name="repetitions" required>
     </div>
     <button type="submit" class="btn btn-primary my-2">Ajouter</button>
 </form>
