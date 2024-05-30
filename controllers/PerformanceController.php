@@ -10,7 +10,7 @@ class PerformanceController {
         $performances = $performance->getByDate($date);
         $exercice = new Exercice();
         $exercices = $exercice->getAll();
-        
+
 
         require_once __DIR__ . '/../views/performances.php';
     }
@@ -22,5 +22,23 @@ class PerformanceController {
             header('Location: /performances?date=' . $_POST['date']);
         }
     }
+
+    public function getLastPerformance() {
+        if (!isset($_GET['exercice_id'])) {
+            echo json_encode(['success' => false, 'message' => 'Exercice ID is required']);
+            return;
+        }
+    
+        $exercice_id = $_GET['exercice_id'];
+        $performance = new Performance();
+        $lastPerformance = $performance->getLastByExerciceId($exercice_id);
+    
+        if ($lastPerformance) {
+            echo json_encode(['success' => true, 'poids' => $lastPerformance['poids'], 'series' => $lastPerformance['series'], 'repetitions' => $lastPerformance['repetitions']]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'No performance data found']);
+        }
+    }
+    
 }
 ?>

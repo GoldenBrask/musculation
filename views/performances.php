@@ -28,8 +28,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Ajouter</button>
 </form>
-<script src="/public/js/popper.min.js"></script>
-<script src="/public/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function() {
     $('#exercice_id').change(function() {
