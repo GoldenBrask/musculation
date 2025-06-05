@@ -1,4 +1,4 @@
-</div>
+    </main>
     <footer class="footer mt-auto py-3 bg-body-tertiary">
         <div class="container">
             <span class="text-muted">Brask © 2024 Musculation. Tous droits réservés.</span>
