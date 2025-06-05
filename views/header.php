@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-bs-theme="auto">
 <head>
     <meta charset="UTF-8">
     <title><?php echo $title ?? 'Musculation'; ?></title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/color-modes.js"></script>
     <script src="/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
@@ -34,6 +35,16 @@
                         <a class="nav-link" href="/register">Inscription</a>
                     </li>
                 <?php endif; ?>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="themeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Thème
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="themeDropdown">
+                        <li><a class="dropdown-item" href="#" data-bs-theme-value="light">Clair</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-theme-value="dark">Sombre</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-theme-value="auto">Système</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
