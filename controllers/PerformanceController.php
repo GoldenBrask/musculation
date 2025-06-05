@@ -64,13 +64,14 @@ class PerformanceController {
             echo json_encode(['success' => false, 'message' => 'Partie corps ID is required']);
             return;
         }
-    
+
         $partie_corps_id = $_POST['partie_corps_id'];
+        $date = $_POST['date'] ?? date('Y-m-d');
+
         $performance = new Performance();
-        if($partie_corps_id == 0){
-            $date = $_GET['date'] ?? date('Y-m-d');
+        if ($partie_corps_id == 0) {
             $filteredPerformances = $performance->getByDate($date);
-        }else{
+        } else {
             $filteredPerformances = $performance->getAllbyPartieCorps($partie_corps_id);
         }
     
