@@ -8,7 +8,7 @@
     <script src="/js/color-modes.js"></script>
     <script src="/js/jquery-3.7.1.min.js"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg bg-body-tertiary ms-2">
         <a class="navbar-brand fw-bold" href="/">Musculation</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,4 +49,4 @@
             </ul>
         </div>
     </nav>
-    <div class="container mt-4 mb-5">
+    <main class="container flex-grow-1 mt-4 mb-5">
