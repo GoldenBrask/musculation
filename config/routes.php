@@ -12,5 +12,6 @@ return [
     ['POST', '/login', 'UserController#login'],
     ['GET', '/register', 'UserController#register'],
     ['POST', '/register', 'UserController#register'],
+    ['GET', '/check-username', 'UserController#checkUsername'],
     ['GET', '/logout', 'UserController#logout'],
 ];
