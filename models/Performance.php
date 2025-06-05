@@ -15,7 +15,7 @@ class Performance {
 
     public function getAll($user_id) {
         $stmt = $this->pdo->prepare(
-            "SELECT p.id AS idPerf, p.date, p.poids, p.series, p.repetitions, e.nom AS nomExos
+            "SELECT p.id AS idPerf, p.date, p.poids, p.series, p.repetitions, e.nom AS nomExos, e.id AS exercice_id
              FROM performances p
              JOIN exercices e ON p.exercice_id = e.id
              WHERE p.user_id = :user_id
