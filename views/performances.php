@@ -101,38 +101,35 @@ $(document).ready(function() {
     $('#partie_corps_id').change(function() {
         var partieCorpsId = $(this).val();
         var currentDate = $('#date').val() || new URLSearchParams(window.location.search).get('date');
-        if (partieCorpsId) {
-            $.ajax({
-                url: '/performance/filter',
-                type: 'POST',
-                data: { partie_corps_id: partieCorpsId, date: currentDate },
-                dataType: 'json',
-                success: function(data) {
-                    if (data.success) {
-                        var performances = data.performances;
-                        var tbody = '';
-                        performances.forEach(function(performance) {
-                            tbody += '<tr>';
-                            tbody += '<td>' + performance.idPerf + '</td>';
-                            tbody += '<td>' + performance.date + '</td>';
-                            tbody += '<td>' + performance.nomExos + '</td>';
-                            tbody += '<td>' + performance.poids + '</td>';
-                            tbody += '<td>' + performance.series + '</td>';
-                            tbody += '<td>' + performance.repetitions + '</td>';
-                            tbody += '</tr>';
-                        });
-                        $('table tbody').html(tbody);
-                    } else {
-                        $('table tbody').html('<tr><td colspan="6">Pas de données disponibles</td></tr>');
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.error('Error:', textStatus, errorThrown);
+
+        $.ajax({
+            url: '/performance/filter',
+            type: 'POST',
+            data: { partie_corps_id: partieCorpsId, date: currentDate },
+            dataType: 'json',
+            success: function(data) {
+                if (data.success) {
+                    var performances = data.performances;
+                    var tbody = '';
+                    performances.forEach(function(performance) {
+                        tbody += '<tr>';
+                        tbody += '<td>' + performance.idPerf + '</td>';
+                        tbody += '<td>' + performance.date + '</td>';
+                        tbody += '<td>' + performance.nomExos + '</td>';
+                        tbody += '<td>' + performance.poids + '</td>';
+                        tbody += '<td>' + performance.series + '</td>';
+                        tbody += '<td>' + performance.repetitions + '</td>';
+                        tbody += '</tr>';
+                    });
+                    $('table tbody').html(tbody);
+                } else {
+                    $('table tbody').html('<tr><td colspan="6">Pas de données disponibles</td></tr>');
                 }
-            });
-        } else {
-            $('table tbody').html('');
-        }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error:', textStatus, errorThrown);
+            }
+        });
     });
 });
 </script>

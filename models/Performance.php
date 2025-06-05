@@ -13,6 +13,18 @@ class Performance {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAll($user_id) {
+        $stmt = $this->pdo->prepare(
+            "SELECT p.id AS idPerf, p.date, p.poids, p.series, p.repetitions, e.nom AS nomExos
+             FROM performances p
+             JOIN exercices e ON p.exercice_id = e.id
+             WHERE p.user_id = :user_id
+             ORDER BY p.date DESC"
+        );
+        $stmt->execute(['user_id' => $user_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getLastByExerciceId($exercice_id, $user_id) {
         $stmt = $this->pdo->prepare("SELECT * FROM performances WHERE exercice_id = :exercice_id AND user_id = :user_id ORDER BY date DESC LIMIT 1");
         $stmt->execute(['exercice_id' => $exercice_id, 'user_id' => $user_id]);
