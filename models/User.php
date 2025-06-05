@@ -12,10 +12,16 @@ class User {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create($email, $password) {
+    public function findByUsername($username) {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE username = :username");
+        $stmt->execute(['username' => $username]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function create($email, $username, $password) {
         $hash = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $this->pdo->prepare("INSERT INTO users (email, password) VALUES (:email, :password)");
-        $stmt->execute(['email' => $email, 'password' => $hash]);
+        $stmt = $this->pdo->prepare("INSERT INTO users (email, username, password) VALUES (:email, :username, :password)");
+        $stmt->execute(['email' => $email, 'username' => $username, 'password' => $hash]);
     }
 }
 ?>
