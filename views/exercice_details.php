@@ -5,6 +5,7 @@ include 'header.php';
 <h1>Détails de l'exercice</h1>
 <p><strong>Nom :</strong> <?= $details['nomExos'] ?></p>
 <p><strong>Partie du corps :</strong> <?= $details['nomPartieCorps'] ?></p>
+<a href="/performances?exercice_id=<?= $details['id'] ?>" class="btn btn-primary my-2">Ajouter une performance</a>
 
 <h2 class="mt-4">Performances</h2>
 

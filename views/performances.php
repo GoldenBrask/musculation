@@ -10,7 +10,7 @@
         <select class="form-control" id="exercice_id" name="exercice_id" required>
             <option value="">Sélectionnez un exercice</option>
             <?php foreach ($exercices as $exercice): ?>
-                <option value="<?= $exercice['id'] ?>"><?= $exercice['nomExos'] ?></option>
+                <option value="<?= $exercice['id'] ?>" <?= isset($selectedExercice) && $selectedExercice == $exercice['id'] ? 'selected' : '' ?>><?= $exercice['nomExos'] ?></option>
             <?php endforeach; ?>
         </select>
     </div>

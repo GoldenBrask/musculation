@@ -10,8 +10,9 @@ class PerformanceController {
         $performances = $performance->getAll($_SESSION['user_id']);
         $exercice = new Exercice();
         $exercices = $exercice->getAll($_SESSION['user_id']);
+        $selectedExercice = $_GET['exercice_id'] ?? null;
         $parties = $exercice->getAllPartiesCorps();
-        
+
 
 
         require_once __DIR__ . '/../views/performances.php';
