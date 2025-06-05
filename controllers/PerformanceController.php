@@ -7,7 +7,7 @@ class PerformanceController {
     public function index() {
         $date = $_GET['date'] ?? date('Y-m-d');
         $performance = new Performance();
-        $performances = $performance->getByDate($date, $_SESSION['user_id']);
+        $performances = $performance->getAll($_SESSION['user_id']);
         $exercice = new Exercice();
         $exercices = $exercice->getAll($_SESSION['user_id']);
         $parties = $exercice->getAllPartiesCorps();
@@ -66,11 +66,10 @@ class PerformanceController {
         }
 
         $partie_corps_id = $_POST['partie_corps_id'];
-        $date = $_POST['date'] ?? date('Y-m-d');
 
         $performance = new Performance();
         if ($partie_corps_id == 0) {
-            $filteredPerformances = $performance->getByDate($date, $_SESSION['user_id']);
+            $filteredPerformances = $performance->getAll($_SESSION['user_id']);
         } else {
             $filteredPerformances = $performance->getAllbyPartieCorps($partie_corps_id, $_SESSION['user_id']);
         }
