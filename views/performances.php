@@ -3,7 +3,7 @@
 <form method="POST" action="/performance/create">
     <div class="form-group">
         <label for="date">Date</label>
-        <input type="date" class="form-control" id="date" name="date" value="<?= date('Y-m-d') ?>" required>
+        <input type="date" class="form-control" id="date" name="date" value="<?= $date ?>" required>
     </div>
     <div class="form-group">
         <label for="exercice_id">Exercice</label>
@@ -100,11 +100,12 @@ $(document).ready(function() {
 
     $('#partie_corps_id').change(function() {
         var partieCorpsId = $(this).val();
+        var currentDate = $('#date').val() || new URLSearchParams(window.location.search).get('date');
         if (partieCorpsId) {
             $.ajax({
                 url: '/performance/filter',
                 type: 'POST',
-                data: { partie_corps_id: partieCorpsId },
+                data: { partie_corps_id: partieCorpsId, date: currentDate },
                 dataType: 'json',
                 success: function(data) {
                     if (data.success) {
