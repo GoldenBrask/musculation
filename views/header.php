@@ -13,13 +13,27 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse ms-2" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="/exercices">Exercices</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/performances">Performances</a>
                 </li>
+            </ul>
+            <ul class="navbar-nav">
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Déconnexion</a>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Inscription</a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>

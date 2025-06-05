@@ -3,6 +3,8 @@ require_once '../config/config.php';
 require_once '../models/Database.php';
 require_once '../lib/AltoRouter.php';
 
+session_start();
+
 $router = new AltoRouter();
 
 $routes = require '../config/routes.php';
