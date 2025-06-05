@@ -123,7 +123,7 @@ $(document).ready(function() {
                         });
                         $('table tbody').html(tbody);
                     } else {
-                        $('table tbody').html('<tr><td colspan="6">Pas de données disponible</td></tr>');
+                        $('table tbody').html('<tr><td colspan="6">Pas de données disponibles</td></tr>');
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
