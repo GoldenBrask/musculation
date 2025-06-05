@@ -15,6 +15,11 @@ foreach ($routes as $route) {
 
 $match = $router->match();
 
+if ($match && !in_array($match['target'], ['UserController#login', 'UserController#register']) && !isset($_SESSION['user_id'])) {
+    header('Location: /login');
+    exit;
+}
+
 if ($match) {
     list($controllerName, $action) = explode('#', $match['target']);
     require_once '../controllers/' . $controllerName . '.php';

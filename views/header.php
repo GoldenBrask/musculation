@@ -8,7 +8,7 @@
     <script src="/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light ms-2">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary ms-2">
         <a class="navbar-brand fw-bold" href="/">Musculation</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

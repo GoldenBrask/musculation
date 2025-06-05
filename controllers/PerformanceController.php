@@ -7,9 +7,9 @@ class PerformanceController {
     public function index() {
         $date = $_GET['date'] ?? date('Y-m-d');
         $performance = new Performance();
-        $performances = $performance->getByDate($date);
+        $performances = $performance->getByDate($date, $_SESSION['user_id']);
         $exercice = new Exercice();
-        $exercices = $exercice->getAll();
+        $exercices = $exercice->getAll($_SESSION['user_id']);
         $parties = $exercice->getAllPartiesCorps();
         
 
@@ -20,7 +20,7 @@ class PerformanceController {
     public function create() {
         if ($_POST) {
             $performance = new Performance();
-            $performance->create($_POST['date'], $_POST['exercice_id'], $_POST['poids'], $_POST['series'], $_POST['repetitions']);
+            $performance->create($_POST['date'], $_POST['exercice_id'], $_POST['poids'], $_POST['series'], $_POST['repetitions'], $_SESSION['user_id']);
             header('Location: /performances?date=' . $_POST['date']);
         }
     }
@@ -33,7 +33,7 @@ class PerformanceController {
     
         $exercice_id = $_GET['exercice_id'];
         $performance = new Performance();
-        $lastPerformance = $performance->getLastByExerciceId($exercice_id);
+        $lastPerformance = $performance->getLastByExerciceId($exercice_id, $_SESSION['user_id']);
     
         if ($lastPerformance) {
             echo json_encode(['success' => true, 'poids' => $lastPerformance['poids'], 'series' => $lastPerformance['series'], 'repetitions' => $lastPerformance['repetitions']]);
@@ -50,7 +50,7 @@ class PerformanceController {
     
         $exercice_id = $_GET['exercice_id'];
         $performance = new Performance();
-        $lastPerformance = $performance->getLastByExerciceId($exercice_id);
+        $lastPerformance = $performance->getLastByExerciceId($exercice_id, $_SESSION['user_id']);
     
         if ($lastPerformance) {
             echo json_encode(['success' => true, 'poids' => $lastPerformance['poids'], 'series' => $lastPerformance['series'], 'repetitions' => $lastPerformance['repetitions']]);
@@ -70,9 +70,9 @@ class PerformanceController {
 
         $performance = new Performance();
         if ($partie_corps_id == 0) {
-            $filteredPerformances = $performance->getByDate($date);
+            $filteredPerformances = $performance->getByDate($date, $_SESSION['user_id']);
         } else {
-            $filteredPerformances = $performance->getAllbyPartieCorps($partie_corps_id);
+            $filteredPerformances = $performance->getAllbyPartieCorps($partie_corps_id, $_SESSION['user_id']);
         }
     
         if ($filteredPerformances) {
