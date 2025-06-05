@@ -37,12 +37,6 @@ class Performance {
         ]);
     }
 
-    // public function getAllbyPartieCorps($partie_corps_id) {
-    //     $stmt = $this->pdo->prepare("SELECT * FROM performances pf JOIN exercices e ON pf.exercice_id = e.id JOIN parties_corps pc ON pc.id = e.partie_corps_id WHERE partie_corps_id = :partie_corps_id");
-    //     $stmt->execute(['partie_corps_id' => $partie_corps_id]);
-    //     return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    // }
-
 
     public function getAllbyPartieCorps($partie_corps_id) {
         $stmt = $this->pdo->prepare("
