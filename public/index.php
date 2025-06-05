@@ -1,42 +1,23 @@
 <?php
-
 require_once '../config/config.php';
 require_once '../models/Database.php';
+require_once '../lib/AltoRouter.php';
 
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$router = new AltoRouter();
 
-if ('/' === $uri) {
-    require '../controllers/HomeController.php';
-    $controller = new HomeController();
-    $controller->index();
-} elseif ('/exercices' === $uri) {
-    require '../controllers/ExerciceController.php';
-    $controller = new ExerciceController();
-    $controller->index();
-} elseif ('/exercice/create' === $uri && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    require '../controllers/ExerciceController.php';
-    $controller = new ExerciceController();
-    $controller->create();
-} elseif (preg_match('#^/exercice/(\d+)$#', $uri, $matches)) {
-    require '../controllers/ExerciceController.php';
-    $controller = new ExerciceController();
-    $controller->show($matches[1]);
-} elseif ('/performances' === $uri) {
-    require '../controllers/PerformanceController.php';
-    $controller = new PerformanceController();
-    $controller->index();
-} elseif ('/performance/create' === $uri && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    require '../controllers/PerformanceController.php';
-    $controller = new PerformanceController();
-    $controller->create();
-} elseif ('/performance/data' === $uri) {
-    require '../controllers/PerformanceController.php';
-    $controller = new PerformanceController();
-    $controller->getLastPerformance();
-} elseif ('/performance/filter' === $uri && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    require '../controllers/PerformanceController.php';
-    $controller = new PerformanceController();
-    $controller->filter();
+$routes = require '../config/routes.php';
+foreach ($routes as $route) {
+    list($method, $path, $target) = $route;
+    $router->map($method, $path, $target);
+}
+
+$match = $router->match();
+
+if ($match) {
+    list($controllerName, $action) = explode('#', $match['target']);
+    require_once '../controllers/' . $controllerName . '.php';
+    $controller = new $controllerName();
+    call_user_func_array([$controller, $action], $match['params']);
 } else {
     header('HTTP/1.1 404 Not Found');
     echo 'Page not found';
